@@ -3,7 +3,7 @@
   ~ /**
   ~  * Created by Yadgarov Islombek on 2021
   ~  * Copyright (c).  All rights reserved.
-  ~  * Last modified 17.01.21 14:23
+  ~  * Last modified 17.01.21 14:54
   ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
   ~  */
   -->
@@ -13,7 +13,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Activity.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"

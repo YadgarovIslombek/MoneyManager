@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 17.01.21 14:23
+ *  * Last modified 17.01.21 14:45
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -15,7 +15,7 @@ buildscript {
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.0.0"
-
+        classpath 'com.google.gms:google-services:4.3.4'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -25,6 +25,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 

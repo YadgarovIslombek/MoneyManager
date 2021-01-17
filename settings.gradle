@@ -1,0 +1,11 @@
+/*
+ * *
+ *  * Created by Yadgarov Islombek on 2021
+ *  * Copyright (c).  All rights reserved.
+ *  * Last modified 17.01.21 14:23
+ *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
+ *
+ */
+
+include ':app'
+rootProject.name = "MoneyManager"

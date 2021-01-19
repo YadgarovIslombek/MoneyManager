@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 17.01.21 23:02
+ *  * Last modified 19.01.21 12:21
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -17,7 +17,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.aid.moneymanager.Activity.MainActivity;
+import com.aid.moneymanager.ui.main.MainActivity;
 import com.aid.moneymanager.R;
 import com.aid.moneymanager.firebase.models.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;

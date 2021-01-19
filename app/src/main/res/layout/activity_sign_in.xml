@@ -3,7 +3,7 @@
   ~ /**
   ~  * Created by Yadgarov Islombek on 2021
   ~  * Copyright (c).  All rights reserved.
-  ~  * Last modified 17.01.21 22:40
+  ~  * Last modified 19.01.21 15:04
   ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
   ~  */
   -->
@@ -15,7 +15,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.signin.SignInActivity">
 
-    <com.google.android.material.button.MaterialButton
+    <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
         android:layout_width="250dp"
         android:layout_height="54dp"

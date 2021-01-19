@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 19.01.21 12:21
+ *  * Last modified 19.01.21 16:32
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -42,7 +42,7 @@ import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 public class SignInActivity extends AppCompatActivity {
-    private static final int R_SIGN_IN = 123;
+    private static final int RC_SIGN_IN = 123;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
     private TextView errorTextView;
@@ -81,13 +81,13 @@ public class SignInActivity extends AppCompatActivity {
         private void signIn() {
             showProgressView();
             Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-            startActivityForResult(signInIntent, R_SIGN_IN);
+            startActivityForResult(signInIntent, RC_SIGN_IN);
         }
 
         @Override
         public void onActivityResult(int requestCode, int resultCode, Intent data) {
             super.onActivityResult(requestCode, resultCode, data);
-            if (requestCode == R_SIGN_IN) {
+            if (requestCode == RC_SIGN_IN) {
                 Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
                 try {
                     GoogleSignInAccount account = task.getResult(ApiException.class);

@@ -3,7 +3,7 @@
   ~ /**
   ~  * Created by Yadgarov Islombek on 2021
   ~  * Copyright (c).  All rights reserved.
-  ~  * Last modified 19.01.21 12:45
+  ~  * Last modified 19.01.21 15:33
   ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
   ~  */
   -->
@@ -40,7 +40,7 @@
         app:tabTextColor="@color/textColorPrimary"/>
 </com.google.android.material.appbar.AppBarLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:transitionName="t_r"
+        android:transitionName="transition_reveal"
         android:id="@+id/add_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

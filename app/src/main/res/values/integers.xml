@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by Yadgarov Islombek on 2021
+  ~  * Copyright (c).  All rights reserved.
+  ~  * Last modified 21.11.19 14:44
+  ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
+  ~  */
+  -->
+
+<resources>
+    <integer name="animation_duration">300</integer>
+    <integer name="animation_duration_exit" >200 </integer>
+</resources>

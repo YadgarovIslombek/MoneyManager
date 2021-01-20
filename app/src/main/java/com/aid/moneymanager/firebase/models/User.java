@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 17.01.21 22:56
+ *  * Last modified 21.01.21 1:14
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -15,7 +15,7 @@ import java.util.Map;
 
 @IgnoreExtraProperties
 public class User {
-    public Currency currency = new Currency("Som", true, true);
+    public Curency curency = new Curency("Som", true, true);
     public UserSettings userSettings = new UserSettings();
     public Wallet wallet = new Wallet();
     public Map<String, WalletEntryCategory> customCategories = new HashMap<>();

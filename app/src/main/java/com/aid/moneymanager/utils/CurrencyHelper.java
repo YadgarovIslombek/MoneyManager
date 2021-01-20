@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 19.01.21 22:29
+ *  * Last modified 21.01.21 1:14
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -14,20 +14,20 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.aid.moneymanager.firebase.models.Currency;
+import com.aid.moneymanager.firebase.models.Curency;
 import com.aid.moneymanager.firebase.models.User;
 
 public class CurrencyHelper {
-    public static String formatCurrency(Currency currency, long money) {
+    public static String formatCurrency(Curency curency, long money) {
         long absMoney = Math.abs(money);
-        return (currency.left ? (currency.symbol + (currency.space ? " " : "")): "") +
+        return (curency.left ? (curency.symbol + (curency.space ? " " : "")): "") +
                 (money < 0 ? "-" : "") + (absMoney / 100) + "." +
                 (absMoney % 100 < 10 ? "0" : "") +
                 (absMoney % 100)  +
-                (currency.left ? "" : ((currency.space ? " " : "") + currency.symbol));
+                (curency.left ? "" : ((curency.space ? " " : "") + curency.symbol));
     }
     public static void setupAmountEditText(EditText editText, User user) {
-        editText.setText(CurrencyHelper.formatCurrency(user.currency,0), TextView.BufferType.EDITABLE);
+        editText.setText(CurrencyHelper.formatCurrency(user.curency,0), TextView.BufferType.EDITABLE);
         editText.addTextChangedListener(new TextWatcher() {
             private String current = "";
             @Override
@@ -39,10 +39,10 @@ public class CurrencyHelper {
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
                 if (!charSequence.toString().equals(current)) {
                     editText.removeTextChangedListener(this);
-                    current = CurrencyHelper.formatCurrency(user.currency,convertAmountStringToLong(charSequence));
+                    current = CurrencyHelper.formatCurrency(user.curency,convertAmountStringToLong(charSequence));
                     editText.setText(current);
                     editText.setSelection(current.length() -
-                            (user.currency.left ? 0 : (user.currency.symbol.length() + (user.currency.space ? 1 : 0))));
+                            (user.curency.left ? 0 : (user.curency.symbol.length() + (user.curency.space ? 1 : 0))));
 
                     editText.addTextChangedListener(this);
                 }

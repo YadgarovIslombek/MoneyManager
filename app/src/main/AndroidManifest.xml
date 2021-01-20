@@ -3,7 +3,7 @@
   ~ /**
   ~  * Created by Yadgarov Islombek on 2021
   ~  * Copyright (c).  All rights reserved.
-  ~  * Last modified 19.01.21 15:11
+  ~  * Last modified 20.01.21 0:08
   ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
   ~  */
   -->
@@ -18,13 +18,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.add_kiritish.AddWalletActivity"></activity>
-        <activity android:name=".ui.signin.SignInActivity">
+        <activity
+            android:name=".ui.splash_screen.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.add_kiritish.AddWalletActivity"></activity>
+        <activity android:name=".ui.signin.SignInActivity">
         </activity>
         <activity android:name=".ui.main.MainActivity"></activity>
     </application>

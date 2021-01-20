@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 19.01.21 16:32
+ *  * Last modified 20.01.21 0:12
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -66,7 +66,7 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 signIn();
                 signInButton.setEnabled(false);
-                errorTextView.setText("");
+//                errorTextView.setText("");
             }
         });
     }

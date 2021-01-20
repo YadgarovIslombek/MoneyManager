@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by Yadgarov Islombek on 2021
+  ~  * Copyright (c).  All rights reserved.
+  ~  * Last modified 21.11.19 14:44
+  ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
+  ~  */
+  -->
+
+<layer-list xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:drawable="@color/textColorPrimary"/>
+
+    <item
+        android:gravity="center">
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/logo"
+            />
+    </item>
+
+</layer-list>

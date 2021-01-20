@@ -2,14 +2,12 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 19.01.21 22:35
+ *  * Last modified 21.01.21 1:10
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
 
 package com.aid.moneymanager.ui.add_kiritish;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -24,12 +22,16 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.aid.moneymanager.R;
-import com.aid.moneymanager.activityContainer.OvalActivity;
+import com.aid.moneymanager.activityConteyner.OvalActivity;
+import com.aid.moneymanager.exceptions.StringException;
+import com.aid.moneymanager.exceptions.NolBalanceDifferenceException;
 import com.aid.moneymanager.firebase.FirebaseElement;
 import com.aid.moneymanager.firebase.FirebaseObserver;
 import com.aid.moneymanager.firebase.models.User;
+import com.aid.moneymanager.firebase.models.WalletEnter;
 import com.aid.moneymanager.firebase.viewModel_fact.UserProfileViewModelFactory;
 import com.aid.moneymanager.models.Category;
+import com.aid.moneymanager.utils.CategorysHelper;
 import com.aid.moneymanager.utils.CurrencyHelper;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -113,9 +115,9 @@ public class AddWalletActivity extends OvalActivity {
                             chosenDate.getTime(),
                             ((Category) selectCategorySpinner.getSelectedItem()).getCategoryID(),
                             selectNameEditText.getText().toString());
-                } catch (EmptyStringException e) {
+                } catch (StringException e) {
                     selectNameInputLayout.setError(e.getMessage());
-                } catch (ZeroBalanceDifferenceException e) {
+                } catch (NolBalanceDifferenceException e) {
                     selectAmountInputLayout.setError(e.getMessage());
                 }
             }
@@ -124,8 +126,8 @@ public class AddWalletActivity extends OvalActivity {
     private void dateUpdated() {
         if (user == null) return;
 
-        final List<Category> categories = CategoriesHelper.getCategories(user);
-        EntryCategoriesAdapter categoryAdapter = new EntryCategoriesAdapter(this,
+        final List<Category> categories = CategorysHelper.getCategories(user);
+        EntryCategoryAdapter categoryAdapter = new EntryCategoryAdapter(this,
                 R.layout.new_entry_type_spinner_row, categories);
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         selectCategorySpinner.setAdapter(categoryAdapter);
@@ -143,19 +145,19 @@ public class AddWalletActivity extends OvalActivity {
         chooseTimeTextView.setText(dataFormatter2.format(chosenDate.getTime()));
     }
 
-    public void addToWallet(long balanceDifference, Date entryDate, String entryCategory, String entryName) throws ZeroBalanceDifferenceException, EmptyStringException {
+    public void addToWallet(long balanceDifference, Date entryDate, String entryCategory, String entryName) throws NolBalanceDifferenceException, StringException {
         if (balanceDifference == 0) {
 //            throw new ZeroBalanceDifferenceException("Balance difference should not be 0");
-            throw new ZeroBalanceDifferenceException("0 dan yuqori bo'lishi shart");
+            throw new NolBalanceDifferenceException("0 dan yuqori bo'lishi shart");
         }
 
         if (entryName == null || entryName.length() == 0) {
-            throw new EmptyStringException("Matn katta bolishi kerak > 0");
+            throw new StringException("Matn katta bolishi kerak > 0");
 //            throw new EmptyStringException("Entry name length should be > 0");
         }
 
         FirebaseDatabase.getInstance().getReference().child("wallet-entries").child(getUid())
-                .child("default").push().setValue(new WalletEntry(entryCategory, entryName, entryDate.getTime(), balanceDifference));
+                .child("default").push().setValue(new WalletEnter(entryCategory, entryName, entryDate.getTime(), balanceDifference));
         user.wallet.sum += balanceDifference;
         UserProfileViewModelFactory.saveModel(getUid(), user);
         finishWithAnimation();

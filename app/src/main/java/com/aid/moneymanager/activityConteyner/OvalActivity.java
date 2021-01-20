@@ -2,12 +2,12 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 19.01.21 15:30
+ *  * Last modified 21.01.21 1:10
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
 
-package com.aid.moneymanager.activityContainer;
+package com.aid.moneymanager.activityConteyner;
 
 import android.os.Build;
 import android.os.Bundle;

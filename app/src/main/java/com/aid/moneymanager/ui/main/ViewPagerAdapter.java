@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 21.01.21 22:01
+ *  * Last modified 22.01.21 0:15
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -15,7 +15,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.aid.moneymanager.ui.main.history.HistoryFragment;
 import com.aid.moneymanager.ui.main.home.HomeFragment;
+import com.aid.moneymanager.ui.main.statistics.StatistikaFragment;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     private static int TAB_SON =3;

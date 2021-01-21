@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 20.01.21 0:12
+ *  * Last modified 21.01.21 21:34
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -53,6 +53,7 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         progressView = findViewById(R.id.progress_view);
+        errorTextView = findViewById(R.id.error_textview);
         mAuth = FirebaseAuth.getInstance();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -66,7 +67,7 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 signIn();
                 signInButton.setEnabled(false);
-//                errorTextView.setText("");
+                errorTextView.setText("");
             }
         });
     }

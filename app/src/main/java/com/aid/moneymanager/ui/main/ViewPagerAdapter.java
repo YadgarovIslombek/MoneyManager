@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 19.01.21 14:55
+ *  * Last modified 21.01.21 22:01
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.aid.moneymanager.ui.main.home.HomeFragment;
+
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     private static int TAB_SON =3;
 
@@ -24,14 +26,14 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-//        switch (position){
-//            case 0:
-//            return HomeFragment.newInstance();
-//            case 1:
-//                return HistoryFragment.newInstance();
-//            case 2:
-//                return StatistikaFragment.newInstance();
-//        }
+        switch (position){
+           case 0:
+           return HomeFragment.newInstance();
+           case 1:
+                return HistoryFragment.newInstance();
+            case 2:
+                return StatistikaFragment.newInstance();
+        }
         return null;
     }
 
@@ -43,14 +45,14 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-//        switch (position){
-//            case 0:
-//                return HomeFragment.TITLE;
-//            case 1:
-//                return HistoryFragment.TITLE;
-//            case 2:
-//                return StatistikaFragment.TITLE;
-//        }
+        switch (position){
+            case 0:
+                return HomeFragment.TITLE;
+            case 1:
+                return HistoryFragment.TITLE;
+            case 2:
+                return StatistikaFragment.TITLE;
+        }
         return super.getPageTitle(position);
     }
 }

@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 22.01.21 0:29
+ *  * Last modified 22.01.21 0:34
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -41,38 +41,42 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(findViewById(R.id.toolbar));
         FirebaseApp.initializeApp(this);
-        FloatingActionButton addButton = findViewById(R.id.add_fab);
-        addButton.setOnClickListener(new View.OnClickListener() {
+
+        FloatingActionButton addEntryButton = findViewById(R.id.fab_contact_activity);
+        addEntryButton.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
-            public void onClick(View view) {
-                ActivityOptions activityOptions
-                        = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, addButton, addButton.getTransitionName());
-                      startActivity(new Intent(MainActivity.this, AddWalletActivity.class));
-            }
+            public void onClick(View v) {
+                ActivityOptions options =
+                        ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, addEntryButton, addEntryButton.getTransitionName());
+                startActivity(new Intent(MainActivity.this, AddWalletActivity.class), options.toBundle());
 
+            }
         });
+
         ViewPager viewPager = findViewById(R.id.pager);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+            public void onPageScrolled(int i, float v, int i1) {
             }
 
             @Override
-            public void onPageSelected(int position) {
-                ((AppBarLayout)toolbar.getParent()).setExpanded(true,true);
+            public void onPageSelected(int i) {
+                ((AppBarLayout) toolbar.getParent()).setExpanded(true, true);
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
+            public void onPageScrollStateChanged(int i) {
 
             }
         });
-        TabLayout tableLayout =findViewById(R.id.tab);
-        tableLayout.setupWithViewPager(viewPager);
+
+        TabLayout tabLayout = findViewById(R.id.tab);
+        tabLayout.setupWithViewPager(viewPager);
+
+
     }
     @Override
     protected void onResume() {

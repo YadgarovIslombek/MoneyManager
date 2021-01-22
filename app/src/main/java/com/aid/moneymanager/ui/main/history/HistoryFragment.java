@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 21.01.21 23:57
+ *  * Last modified 23.01.21 2:57
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aid.moneymanager.R;
 import com.aid.moneymanager.base.BaseFragment;
 import com.aid.moneymanager.firebase.viewModel_fact.WalletEntriesHistoryViewModelFactory;
+import com.aid.moneymanager.ui.options.OptionsActivity;
 import com.leavjenn.smoothdaterangepicker.date.SmoothDateRangePickerFragment;
 
 import java.text.DateFormat;
@@ -81,47 +82,47 @@ public class HistoryFragment extends BaseFragment {
     }
 
 
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        inflater.inflate(R.menu.history_fragment_menu, menu);
-//        this.menu = menu;
-//        updateCalendarIcon();
-//        super.onCreateOptionsMenu(menu, inflater);
-//    }
-//
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.action_date_range:
-//                showSelectDateRangeDialog();
-//                return true;
-//            case R.id.action_options:
-//                startActivity(new Intent(getActivity(), OptionsActivity.class));
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.history_fragment_menu, menu);
+        this.menu = menu;
+        updateCalendarIcon();
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 
-//    private void updateCalendarIcon() {
-//        MenuItem calendarIcon = menu.findItem(R.id.action_date_range);
-//        if (calendarIcon == null) return;
-//        WalletEntriesHistoryViewModelFactory.Model model = WalletEntriesHistoryViewModelFactory.getModel(getUid(), getActivity());
-//        if (model.hasDateSet()) {
-//            calendarIcon.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.icon_calendar_active));
-//
-//            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
-//
-//            dividerTextView.setText("Date range: " + dateFormat.format(model.getStartDate().getTime())
-//                    + "  -  " + dateFormat.format(model.getEndDate().getTime()));
-//        } else {
-//            calendarIcon.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.icon_calendar));
-//
-//            dividerTextView.setText("So'ngi harajatlar:");
-//        }
-//
-//    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_date_range:
+                showSelectDateRangeDialog();
+                return true;
+            case R.id.action_options:
+                startActivity(new Intent(getActivity(), OptionsActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void updateCalendarIcon() {
+        MenuItem calendarIcon = menu.findItem(R.id.action_date_range);
+        if (calendarIcon == null) return;
+        WalletEntriesHistoryViewModelFactory.Model model = WalletEntriesHistoryViewModelFactory.getModel(getUid(), getActivity());
+        if (model.hasDateSet()) {
+            calendarIcon.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.icon_calendar_active));
+
+            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
+
+            dividerTextView.setText("Date range: " + dateFormat.format(model.getStartDate().getTime())
+                    + "  -  " + dateFormat.format(model.getEndDate().getTime()));
+        } else {
+            calendarIcon.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.icon_calendar));
+
+            dividerTextView.setText("So'ngi harajatlar:");
+        }
+
+    }
 
     private void showSelectDateRangeDialog() {
         SmoothDateRangePickerFragment datePicker = SmoothDateRangePickerFragment.newInstance(new SmoothDateRangePickerFragment.OnDateRangeSetListener() {

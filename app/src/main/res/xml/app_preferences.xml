@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by Yadgarov Islombek on 2021
+  ~  * Copyright (c).  All rights reserved.
+  ~  * Last modified 23.01.21 4:14
+  ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
+  ~  */
+  -->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:divider="?attr/dividerHorizontal">
+    <PreferenceCategory android:title="Sozlash">
+        <Preference
+            android:key="@string/pref_key_counter_type"
+            android:summary="Compare income and expenses"
+            android:title="Homescreen counter type"
+            app:isPreferenceVisible="false" />
+        <Preference
+            android:key="@string/pref_key_counter_period"
+            android:summary="Compare income and expenses"
+            android:title="Homescreen counter period"
+            app:isPreferenceVisible="false" />
+        <Preference
+            android:key="@string/pref_key_limit"
+            android:summary="120$"
+            android:title="Limit"
+            app:isPreferenceVisible="false" />
+        <Preference
+            android:key="@string/pref_key_currency"
+            android:summary="So'm"
+            android:title="Pul birligini o'zgartirish" />
+        <Preference
+            android:key="@string/pref_key_custom_categories"
+            android:title="Kategoriya qo'shish" />
+        <Preference
+            android:key="@string/pref_key_first_month_day"
+            android:summary="Monday"
+            android:title="Set first month day"
+            app:isPreferenceVisible="false" />
+        <Preference
+            android:key="@string/pref_key_first_week_day"
+            android:summary="1"
+            android:title="Set first week day"
+            app:isPreferenceVisible="false" />
+        <Preference
+            android:key="@string/pref_key_policy"
+            android:title="Privacy policy"
+            app:isPreferenceVisible="false" />
+        <Preference
+            android:key="@string/pref_key_logout"
+            android:title="Tizimdan chiqish" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

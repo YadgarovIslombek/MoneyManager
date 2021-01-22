@@ -3,7 +3,7 @@
   ~ /**
   ~  * Created by Yadgarov Islombek on 2021
   ~  * Copyright (c).  All rights reserved.
-  ~  * Last modified 21.01.21 21:41
+  ~  * Last modified 23.01.21 4:14
   ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
   ~  */
   -->
@@ -29,10 +29,19 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.add_kiritish.AddWalletActivity"></activity>
-        <activity android:name=".ui.signin.SignInActivity"
+        <activity
+            android:name=".ui.signin.SignInActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".ui.main.history.edit_entry.EditWalletEntryActivity" />
+        <activity
+            android:name=".ui.options.OptionsActivity"
             android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.main.MainActivity" />
         </activity>
-        <activity android:name=".ui.main.MainActivity"
+        <activity
+            android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait"></activity>
     </application>
 

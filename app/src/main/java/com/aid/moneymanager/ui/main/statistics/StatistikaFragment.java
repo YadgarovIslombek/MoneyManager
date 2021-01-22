@@ -2,19 +2,22 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 22.01.21 0:15
+ *  * Last modified 23.01.21 2:57
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
 
 package com.aid.moneymanager.ui.main.statistics;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -35,6 +38,7 @@ import com.aid.moneymanager.firebase.models.WalletEnter;
 import com.aid.moneymanager.firebase.viewModel_fact.TopWalletEntriesStatisticsViewModelFactory;
 import com.aid.moneymanager.firebase.viewModel_fact.UserProfileViewModelFactory;
 import com.aid.moneymanager.models.Category;
+import com.aid.moneymanager.ui.options.OptionsActivity;
 import com.aid.moneymanager.utils.CalendarHelper;
 import com.aid.moneymanager.utils.CategorysHelper;
 import com.aid.moneymanager.utils.CurrencyHelper;
@@ -231,39 +235,39 @@ public class StatistikaFragment extends BaseFragment {
 
     }
 
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        inflater.inflate(R.menu.statistics_fragment_menu, menu);
-//        this.menu = menu;
-//        updateCalendarIcon(false);
-//        super.onCreateOptionsMenu(menu, inflater);
-//    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.statistics_fragment_menu, menu);
+        this.menu = menu;
+        updateCalendarIcon(false);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 
-//    private void updateCalendarIcon(boolean updatedFromUI) {
-//        if (menu == null) return;
-//        MenuItem calendarIcon = menu.findItem(R.id.action_date_range);
-//        if (calendarIcon == null) return;
-//        if (updatedFromUI) {
-//            calendarIcon.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.icon_calendar_active));
-//        } else {
-//            calendarIcon.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.icon_calendar));
-//        }
-//
-//    }
+    private void updateCalendarIcon(boolean updatedFromUI) {
+        if (menu == null) return;
+        MenuItem calendarIcon = menu.findItem(R.id.action_date_range);
+        if (calendarIcon == null) return;
+        if (updatedFromUI) {
+            calendarIcon.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.icon_calendar_active));
+        } else {
+            calendarIcon.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.icon_calendar));
+        }
+
+    }
 
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.action_date_range:
-//                showSelectDateRangeDialog();
-//                return true;
-//            case R.id.action_options:
-//                startActivity(new Intent(getActivity(), OptionsActivity.class));
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_date_range:
+                showSelectDateRangeDialog();
+                return true;
+            case R.id.action_options:
+                startActivity(new Intent(getActivity(), OptionsActivity.class));
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     private void showSelectDateRangeDialog() {
         SmoothDateRangePickerFragment datePicker = SmoothDateRangePickerFragment.newInstance(new SmoothDateRangePickerFragment.OnDateRangeSetListener() {

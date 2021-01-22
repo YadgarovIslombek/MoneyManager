@@ -2,23 +2,18 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 21.01.21 23:42
+ *  * Last modified 23.01.21 2:07
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
 
 package com.aid.moneymanager.ui.main.home;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -31,7 +26,6 @@ import com.aid.moneymanager.firebase.FirebaseObserver;
 import com.aid.moneymanager.firebase.ListDataSet;
 import com.aid.moneymanager.firebase.models.User;
 import com.aid.moneymanager.firebase.models.UserSettings;
-import com.aid.moneymanager.firebase.models.Wallet;
 import com.aid.moneymanager.firebase.models.WalletEnter;
 import com.aid.moneymanager.firebase.viewModel_fact.TopWalletEntriesViewModelFactory;
 import com.aid.moneymanager.firebase.viewModel_fact.UserProfileViewModelFactory;
@@ -201,7 +195,7 @@ public class HomeFragment  extends BaseFragment {
         adapter.notifyDataSetChanged();
         totalBalanceTextView.setText(CurrencyHelper.formatCurrency(user.currency, user.wallet.sum));
 
-        if (user.userSettings.homeCounter == UserSettings.HOME_COUNTER_TYPE_SHOW_LIMIT) {
+        if (user.userSettings.homeCounterType == UserSettings.HOME_COUNTER_TYPE_SHOW_LIMIT) {
             LeftBalanceTextView.setText(CurrencyHelper.formatCurrency(user.currency, 0));
             LeftLine1TextView.setText(dateFormat.format(startDate.getTime()));
             LeftLine2TextView.setVisibility(View.INVISIBLE);

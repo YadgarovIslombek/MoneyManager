@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <!--
   ~ /**
   ~  * Created by Yadgarov Islombek on 2021
   ~  * Copyright (c).  All rights reserved.
-  ~  * Last modified 19.01.21 16:25
+  ~  * Last modified 23.01.21 4:14
   ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
   ~  */
   -->
@@ -11,41 +13,43 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#212121"
-    tools:context=".ui.add_kiritish.AddWalletActivity">
-<com.google.android.material.floatingactionbutton.FloatingActionButton
-    android:id="@+id/fab_contact_activity"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_centerInParent ="true"
-    tools:ignore="MissingConstraints"
-    android:layout_marginEnd="8dp"
-    android:layout_marginBottom="8dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp"
-    android:src="@drawable/baseline_add_white_18dp"
-    android:transitionName="transition_reveal"
-    app:backgroundTint="@color/colorPrimary"
-    app:fabSize="normal"
-    app:layout_constraintBottom_toBottomOf="@+id/root_layout"
-    app:layout_constraintEnd_toEndOf="@+id/root_layout"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:pressedTranslationZ="8dp"
+    tools:context=".ui.add_entry.AddWalletEntryActivity">
 
-    />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/activity_contact_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/baseline_add_white_18dp"
+        android:transitionName="transition_reveal"
+        app:backgroundTint="@color/colorPrimary"
+        app:elevation="0dp"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/root_layout"
+        app:layout_constraintEnd_toEndOf="@+id/root_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:pressedTranslationZ="8dp" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/root_layout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/backgroundPrimary"
-            >
+            android:background="@color/backgroundPrimary">
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -64,7 +68,7 @@
                 android:id="@+id/scrollView2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/add_button"
+                app:layout_constraintBottom_toTopOf="@+id/add_entry_button"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar"
                 app:layout_constraintVertical_bias="0.0">
 
@@ -81,11 +85,11 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="12dp"
                         android:paddingTop="8dp"
-                        android:text="Tanlang:"
+                        android:text="Choose type:"
                         android:textColor="@color/help_text_material_light" />
 
                     <Spinner
-                        android:id="@+id/select_spinner"
+                        android:id="@+id/select_type_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="72dp" />
 
@@ -103,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="12dp"
                         android:paddingTop="4dp"
-                        android:text="Kategoriya tanlang:"
+                        android:text="Select category:"
                         android:textColor="@color/help_text_material_light" />
 
                     <Spinner
@@ -128,7 +132,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginBottom="16dp"
-                        android:hint="MS:oylikga bonus qo'shildi, Temurdan qarz oldim..."
+                        android:hint="Name"
                         app:layout_constraintTop_toBottomOf="@+id/sign_out_button">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -140,18 +144,18 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/amount_inputlayout"
+                        android:id="@+id/select_amount_inputlayout"
                         style="@style/Widget.AppCompat.ActionBar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginBottom="16dp"
-                        android:hint="Summa"
+                        android:hint="Amount"
                         app:layout_constraintTop_toBottomOf="@+id/sign_out_button">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/amount_edittext"
+                            android:id="@+id/select_amount_edittext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="number"
@@ -169,12 +173,12 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:paddingLeft="12dp"
-                            android:text="Kun tanlang:"
+                            android:text="Select day:"
                             android:textColor="@color/help_text_material_light"
-                            app:layout_constraintBottom_toTopOf="@+id/kun_tanlash_textview"
+                            app:layout_constraintBottom_toTopOf="@+id/choose_day_textview"
                             app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                            app:layout_constraintStart_toStartOf="@+id/kun_tanlash_textview"
-                            app:layout_constraintTop_toTopOf="@+id/kun_tanlash_textview"
+                            app:layout_constraintStart_toStartOf="@+id/choose_day_textview"
+                            app:layout_constraintTop_toTopOf="@+id/choose_day_textview"
                             app:layout_constraintVertical_bias="0.0" />
 
                         <TextView
@@ -182,14 +186,14 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:paddingLeft="12dp"
-                            android:text="Vaqtni belgilang:"
+                            android:text="Select time:"
                             android:textColor="@color/help_text_material_light"
-                            app:layout_constraintEnd_toEndOf="@+id/vaqt_tanlash_textview"
-                            app:layout_constraintStart_toStartOf="@+id/vaqt_tanlash_textview"
+                            app:layout_constraintEnd_toEndOf="@+id/choose_time_textview"
+                            app:layout_constraintStart_toStartOf="@+id/choose_time_textview"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/kun_tanlash_textview"
+                            android:id="@+id/choose_day_textview"
                             style="@style/Widget.AppCompat.Spinner"
                             android:layout_width="0dp"
                             android:layout_height="50dp"
@@ -211,13 +215,13 @@
                             android:layout_marginStart="8dp"
                             android:layout_marginEnd="8dp"
                             android:background="@color/divider_color"
-                            app:layout_constraintEnd_toEndOf="@+id/kun_tanlash_textview"
+                            app:layout_constraintEnd_toEndOf="@+id/choose_day_textview"
                             app:layout_constraintHorizontal_bias="1.0"
-                            app:layout_constraintStart_toStartOf="@+id/kun_tanlash_textview"
-                            app:layout_constraintTop_toBottomOf="@+id/kun_tanlash_textview" />
+                            app:layout_constraintStart_toStartOf="@+id/choose_day_textview"
+                            app:layout_constraintTop_toBottomOf="@+id/choose_day_textview" />
 
                         <TextView
-                            android:id="@+id/vaqt_tanlash_textview"
+                            android:id="@+id/choose_time_textview"
                             style="@style/Widget.AppCompat.Spinner"
                             android:layout_width="0dp"
                             android:layout_height="50dp"
@@ -230,7 +234,7 @@
                             android:text="aha"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/kun_tanlash_textview"
+                            app:layout_constraintStart_toEndOf="@+id/choose_day_textview"
                             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
                         <View
@@ -239,22 +243,23 @@
                             android:layout_marginStart="8dp"
                             android:layout_marginEnd="8dp"
                             android:background="@color/divider_color"
-                            app:layout_constraintEnd_toEndOf="@+id/vaqt_tanlash_textview"
-                            app:layout_constraintStart_toStartOf="@+id/vaqt_tanlash_textview"
-                            app:layout_constraintTop_toBottomOf="@+id/vaqt_tanlash_textview" />
+                            app:layout_constraintEnd_toEndOf="@+id/choose_time_textview"
+                            app:layout_constraintStart_toStartOf="@+id/choose_time_textview"
+                            app:layout_constraintTop_toBottomOf="@+id/choose_time_textview" />
 
                         <androidx.constraintlayout.widget.Guideline
                             android:id="@+id/guideline3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            app:layout_constraintGuide_percent="0.60583943" />
+                            app:layout_constraintGuide_end="163dp" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
             </ScrollView>
+
             <Button
-                android:id="@+id/add_button"
+                android:id="@+id/add_entry_button"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="120dp"
                 android:layout_height="52dp"
@@ -266,7 +271,7 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
-                android:text="Qo'shish"
+                android:text="Add"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

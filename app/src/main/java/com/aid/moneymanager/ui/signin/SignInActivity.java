@@ -2,24 +2,30 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 21.01.21 21:34
+ *  * Last modified 23.01.21 4:14
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
 
 package com.aid.moneymanager.ui.signin;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.net.Uri;
+
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.TextView;
 
-import com.aid.moneymanager.ui.main.MainActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.aid.moneymanager.Links;
 import com.aid.moneymanager.R;
 import com.aid.moneymanager.firebase.models.User;
+import com.aid.moneymanager.ui.main.MainActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -40,7 +46,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
-
 public class SignInActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 123;
     private FirebaseAuth mAuth;
@@ -48,12 +53,14 @@ public class SignInActivity extends AppCompatActivity {
     private TextView errorTextView;
     private SignInButton signInButton;
     private View progressView;
+    private TextView privacyPolicyTextView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         progressView = findViewById(R.id.progress_view);
-        errorTextView = findViewById(R.id.error_textview);
         mAuth = FirebaseAuth.getInstance();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -70,129 +77,156 @@ public class SignInActivity extends AppCompatActivity {
                 errorTextView.setText("");
             }
         });
+
+//        privacyPolicyTextView = findViewById(R.id.privacy_policy_text_view);
+//        SpannableStringBuilder spanTxt = new SpannableStringBuilder(
+//                "By signing in, you are indicating that you have read and agree to the ");
+//        spanTxt.append("privacy policy");
+//        spanTxt.setSpan(new ClickableSpan() {
+//            @Override
+//            public void onClick(@NonNull View widget) {
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+//                        Uri.parse(Links.PRIVACY_POLICY_LINK));
+//                startActivity(browserIntent);
+//            }
+//        }, spanTxt.length() - "privacy policy".length(), spanTxt.length(), 0);
+//        privacyPolicyTextView.setMovementMethod(LinkMovementMethod.getInstance());
+//        privacyPolicyTextView.setText(spanTxt, TextView.BufferType.SPANNABLE);
+
+        errorTextView = findViewById(R.id.error_textview);
     }
-        @Override
-        public void onStart() {
-            super.onStart();
-            showProgressView();
-            FirebaseUser currentUser = mAuth.getCurrentUser();
-            updateUI(currentUser);
-        }
 
-        private void signIn() {
-            showProgressView();
-            Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-            startActivityForResult(signInIntent, RC_SIGN_IN);
-        }
+    @Override
+    public void onStart() {
+        super.onStart();
+        showProgressView();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
 
-        @Override
-        public void onActivityResult(int requestCode, int resultCode, Intent data) {
-            super.onActivityResult(requestCode, resultCode, data);
-            if (requestCode == RC_SIGN_IN) {
-                Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-                try {
-                    GoogleSignInAccount account = task.getResult(ApiException.class);
-                    firebaseAuthWithGoogle(account);
-                } catch (ApiException e) {
-                    e.printStackTrace();
-                    hideProgressView();
-                    loginError("Googlega ulanishda hatolik.");
-                }
+    private void signIn() {
+        showProgressView();
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account);
+            } catch (ApiException e) {
+                e.printStackTrace();
+                hideProgressView();
+                loginError("Google sign in failed.");
             }
         }
+    }
 
-        private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-            AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-            mAuth.signInWithCredential(credential)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                updateUI(user);
-                            } else {
-                                loginError("Firebasega ulanishda hatolik.");
-                                hideProgressView();
-                            }
+    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            loginError("Firebase auth failed.");
+                            hideProgressView();
                         }
-                    });
-        }
+                    }
+                });
+    }
 
-        private void updateUI(FirebaseUser currentUser) {
-            if (currentUser == null) {
-                progressView.setVisibility(View.GONE);
-                return;
+    private void updateUI(FirebaseUser currentUser) {
+        if (currentUser == null) {
+            progressView.setVisibility(View.GONE);
+            return;
+        }
+        showProgressView();
+        final DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("users").child(encodeUserEmail(currentUser.getUid()));
+        userReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                if (user != null) {
+                    startActivity(new Intent(SignInActivity.this, MainActivity.class));
+                    finish();
+                } else {
+                    runTransaction(userReference);
+                }
+
             }
-            showProgressView();
-            final DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("users").child(currentUser.getUid());
-            userReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    User user = dataSnapshot.getValue(User.class);
-                    if (user != null) {
-                        startActivity(new Intent(SignInActivity.this, MainActivity.class));
-                        finish();
-                    } else {
-                        runTransaction(userReference);
-                    }
 
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    loginError("Firebasedan ma'lumot kelmadi(.");
-                    hideProgressView();
-                }
-            });
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                loginError("Firebase fetch user data failed.");
+                hideProgressView();
+            }
+        });
 
 
-        }
+    }
 
-        private void loginError(String text) {
-            errorTextView.setText(text);
-            signInButton.setEnabled(true);
-        }
+    static String encodeUserEmail(String userEmail) {
+        return userEmail.replace(".", ",");
+    }
 
-        private void runTransaction(DatabaseReference userReference) {
-            showProgressView();
-            userReference.runTransaction(new Transaction.Handler() {
-                @Override
-                public Transaction.Result doTransaction(MutableData mutableData) {
-                    User user = mutableData.getValue(User.class);
-                    if (user == null) {
-                        mutableData.setValue(new User());
-                        return Transaction.success(mutableData);
-                    }
+    static String decodeUserEmail(String userEmail) {
+        return userEmail.replace(",", ".");
+    }
 
+    private void loginError(String text) {
+        errorTextView.setText(text);
+        signInButton.setEnabled(true);
+    }
+
+    private void runTransaction(DatabaseReference userReference) {
+        showProgressView();
+        userReference.runTransaction(new Transaction.Handler() {
+            @Override
+            public Transaction.Result doTransaction(MutableData mutableData) {
+                User user = mutableData.getValue(User.class);
+                if (user == null) {
+                    mutableData.setValue(new User());
                     return Transaction.success(mutableData);
                 }
 
-                @Override
-                public void onComplete(DatabaseError databaseError, boolean committed,
-                                       DataSnapshot dataSnapshot) {
-                    if (committed) {
-                        startActivity(new Intent(SignInActivity.this, MainActivity.class));
-                        finish();
-                    } else {
-                        errorTextView.setText("User yaratilishda hatolik.");
-                        hideProgressView();
-                    }
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(DatabaseError databaseError, boolean committed,
+                                   DataSnapshot dataSnapshot) {
+                if (committed) {
+                    startActivity(new Intent(SignInActivity.this, MainActivity.class));
+                    finish();
+                } else {
+                    errorTextView.setText("Firebase create user transaction failed.");
+                    hideProgressView();
                 }
-            });
-        }
+            }
+        });
+    }
 
-        private void showProgressView() {
-            progressView.setVisibility(View.VISIBLE);
+    private void showProgressView() {
+        progressView.setVisibility(View.VISIBLE);
 
-        }
+    }
 
-        private void hideProgressView() {
-            progressView.setVisibility(View.GONE);
+    private void hideProgressView() {
+        progressView.setVisibility(View.GONE);
 
-        }
+    }
 
-        @Override
-        public void onBackPressed() {
-            moveTaskToBack(true);
-        }
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
 }

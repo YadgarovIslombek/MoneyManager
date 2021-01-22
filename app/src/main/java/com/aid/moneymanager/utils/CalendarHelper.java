@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 21.01.21 23:35
+ *  * Last modified 23.01.21 2:09
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -24,7 +24,7 @@ public class CalendarHelper {
         cal.clear(Calendar.MINUTE);
         cal.clear(Calendar.SECOND);
         cal.clear(Calendar.MILLISECOND);
-        if (user.userSettings.homeCounter2 == UserSettings.HOME_COUNTER_HAFTALIK) {
+        if (user.userSettings.homeCounterPeriod == UserSettings.HOME_COUNTER_HAFTALIK) {
             cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
             if (new Date().getTime() < cal.getTime().getTime())
                 cal.add(Calendar.DATE, -7);
@@ -44,7 +44,7 @@ public class CalendarHelper {
         cal.set(Calendar.MINUTE, 59);
         cal.set(Calendar.SECOND, 59);
         cal.clear(Calendar.MILLISECOND);
-        if (user.userSettings.homeCounter2 == UserSettings.HOME_COUNTER_HAFTALIK) {
+        if (user.userSettings.homeCounterPeriod == UserSettings.HOME_COUNTER_HAFTALIK) {
             cal.add(Calendar.DATE, 6);
         } else {
             cal.add(Calendar.MONTH, 1);

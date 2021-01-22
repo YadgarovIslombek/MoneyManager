@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 17.01.21 23:00
+ *  * Last modified 23.01.21 2:09
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -23,8 +23,8 @@ public class UserSettings {
     public int dayMonthStart = 0;
     public int dayWeekStart = 0;
     public long limit;
-    public int homeCounter = UserSettings.HOME_COUNTER_KIRIM_CHIQIM;
-    public int homeCounter2 = UserSettings.HOME_COUNTER_OYLIK;
+    public int homeCounterType = UserSettings.HOME_COUNTER_KIRIM_CHIQIM;
+    public int homeCounterPeriod = UserSettings.HOME_COUNTER_OYLIK;
 
     public UserSettings() {
 

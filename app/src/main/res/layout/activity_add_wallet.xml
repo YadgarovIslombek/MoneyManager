@@ -5,7 +5,7 @@
   ~ /**
   ~  * Created by Yadgarov Islombek on 2021
   ~  * Copyright (c).  All rights reserved.
-  ~  * Last modified 23.01.21 4:14
+  ~  * Last modified 23.01.21 17:40
   ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
   ~  */
   -->
@@ -17,7 +17,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#212121"
-    tools:context=".ui.add_entry.AddWalletEntryActivity">
+    tools:context=".ui.main.history.edit_entry.EditWalletEntryActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/activity_contact_fab"
@@ -252,7 +252,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            app:layout_constraintGuide_end="163dp" />
+                            app:layout_constraintGuide_begin="249dp" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>

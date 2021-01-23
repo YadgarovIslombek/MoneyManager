@@ -3,11 +3,10 @@
   ~ /**
   ~  * Created by Yadgarov Islombek on 2021
   ~  * Copyright (c).  All rights reserved.
-  ~  * Last modified 21.01.21 22:15
+  ~  * Last modified 23.01.21 17:40
   ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
   ~  */
   -->
-
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -40,7 +39,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="1 250 000 so'm"
+                android:text="1.250.000 so'm"
                 android:textColor="#eceff1"
                 android:textSize="12dp"
                 app:layout_constraintBottom_toBottomOf="@+id/olchov"
@@ -68,7 +67,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Expenses"
+                android:text="Chiqim"
                 android:textColor="#eceff1"
                 android:textSize="10dp"
                 app:layout_constraintEnd_toEndOf="@+id/olchov"
@@ -81,7 +80,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="0 USD"
+                android:text="1.000.000 so'm"
                 android:textColor="#eceff1"
                 android:textSize="12dp"
                 app:layout_constraintBottom_toBottomOf="@+id/olchov"
@@ -109,7 +108,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Income"
+                android:text="Kirim"
                 android:textColor="#eceff1"
                 android:textSize="10dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -150,7 +149,7 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="935.000 so'm"
+                android:text="100.000 so'm"
                 android:textColor="#eceff1"
                 android:textSize="32dp"
                 android:textStyle="bold"
@@ -181,10 +180,10 @@
                 app:gaugeEndValue="100"
                 app:gaugePointEndColor="@color/gauge_income"
                 app:gaugePointStartColor="@color/gauge_income"
-                app:gaugeStrokeColor="@color/gauge_expense"
                 app:gaugeStartAngle="135"
                 app:gaugeStartValue="0"
                 app:gaugeStrokeCap="ROUND"
+                app:gaugeStrokeColor="@color/gauge_expense"
                 app:gaugeStrokeWidth="13dp"
                 app:gaugeSweepAngle="270"
                 app:layout_constraintBottom_toBottomOf="parent"

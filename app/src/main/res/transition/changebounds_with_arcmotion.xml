@@ -3,11 +3,10 @@
   ~ /**
   ~  * Created by Yadgarov Islombek on 2021
   ~  * Copyright (c).  All rights reserved.
-  ~  * Last modified 21.11.19 14:44
+  ~  * Last modified 23.01.21 17:40
   ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
   ~  */
   -->
-
 <transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
     android:duration="200"
     android:interpolator="@android:interpolator/linear_out_slow_in"

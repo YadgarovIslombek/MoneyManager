@@ -2,18 +2,22 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 23.01.21 2:07
+ *  * Last modified 23.01.21 17:50
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
 
 package com.aid.moneymanager.ui.main.home;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -31,6 +35,7 @@ import com.aid.moneymanager.firebase.viewModel_fact.TopWalletEntriesViewModelFac
 import com.aid.moneymanager.firebase.viewModel_fact.UserProfileViewModelFactory;
 import com.aid.moneymanager.lib.OlchovLibFromGit;
 import com.aid.moneymanager.models.Category;
+import com.aid.moneymanager.ui.options.OptionsActivity;
 import com.aid.moneymanager.utils.CalendarHelper;
 import com.aid.moneymanager.utils.CategorysHelper;
 import com.aid.moneymanager.utils.CurrencyHelper;
@@ -132,22 +137,22 @@ public class HomeFragment  extends BaseFragment {
 
     }
 
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        inflater.inflate(R.menu.home_fragment_menu, menu);
-//        super.onCreateOptionsMenu(menu, inflater);
-//    }
-//
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.action_options:
-//                startActivity(new Intent(getActivity(), OptionsActivity.class));
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.home_fragment_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_options:
+                startActivity(new Intent(getActivity(), OptionsActivity.class));
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     private void dataUpdated() {
         if (user == null || walletEntryListDataSet == null) return;
@@ -216,11 +221,11 @@ public class HomeFragment  extends BaseFragment {
 
 
         } else {
-          LeftBalanceTextView.setText(CurrencyHelper.formatCurrency(user.currency, incomesSumInDateRange));
-            LeftLine1TextView.setText("Incomes");
+            LeftBalanceTextView.setText(CurrencyHelper.formatCurrency(user.currency, incomesSumInDateRange));
+            LeftLine1TextView.setText("Kirim");
             LeftLine2TextView.setVisibility(View.INVISIBLE);
             RightBalanceTextView.setText(CurrencyHelper.formatCurrency(user.currency, expensesSumInDateRange));
-            RightLine1TextView.setText("Expenses");
+            RightLine1TextView.setText("Chiqim");
             RightLine2TextView.setVisibility(View.INVISIBLE);
 
             olchov.setPointStartColor(ContextCompat.getColor(getContext(), R.color.gauge_income));

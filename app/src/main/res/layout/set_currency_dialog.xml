@@ -3,7 +3,7 @@
   ~ /**
   ~  * Created by Yadgarov Islombek on 2021
   ~  * Copyright (c).  All rights reserved.
-  ~  * Last modified 23.01.21 4:14
+  ~  * Last modified 23.01.21 17:40
   ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
   ~  */
   -->
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Show currency symbol on left side"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <CheckBox
         android:id="@+id/add_space_currency_checkbox"
@@ -41,6 +41,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Add space bettwen money and currency symbol"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
 </LinearLayout>

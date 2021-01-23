@@ -3,7 +3,7 @@
   ~ /**
   ~  * Created by Yadgarov Islombek on 2021
   ~  * Copyright (c).  All rights reserved.
-  ~  * Last modified 23.01.21 4:14
+  ~  * Last modified 23.01.21 17:50
   ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
   ~  */
   -->
@@ -28,21 +28,42 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.add_kiritish.AddWalletActivity"></activity>
         <activity
             android:name=".ui.signin.SignInActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".ui.main.history.edit_entry.EditWalletEntryActivity" />
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.options.OptionsActivity"
+            android:name=".ui.main.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.add_kiritish.AddWalletActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.main.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.main.MainActivity"
-            android:screenOrientation="portrait"></activity>
-    </application>
+            android:name=".ui.options.OptionsActivity"
+            android:screenOrientation="portrait">
 
+        </activity>
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".ui.main.MainActivity" />
+
+        <activity android:name=".ui.main.history.edit_entry.EditWalletEntryActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.main.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ui.options.categories.CustomCategoriesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.options.categories.AddCustomCategoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.options.categories.EditCustomCategoryActivity"
+            android:screenOrientation="portrait" />
+    </application>
 </manifest>

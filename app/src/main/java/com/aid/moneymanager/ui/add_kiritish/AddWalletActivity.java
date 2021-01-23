@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 21.01.21 1:10
+ *  * Last modified 23.01.21 3:13
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -54,24 +54,27 @@ public class AddWalletActivity extends OvalActivity {
     private User user;
     private TextInputLayout selectAmountInputLayout;
     private TextInputLayout selectNameInputLayout;
+    private EnterTypeAdapter typeAdapter;
 
     public AddWalletActivity() {
-        super(R.layout.activity_add_wallet, R.id.fab_contact_activity, R.id.root_layout, R.id.root_layout2);
+        super(R.layout.activity_add_wallet, R.id.activity_contact_fab, R.id.root_layout, R.id.root_layout2);
     }
+
     @Override
     public void onInitialized(Bundle savedInstanceState) {
         setSupportActionBar(findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Kirim-Chiqim qo'shish");
+        getSupportActionBar().setTitle("Add wallet entry");
+
         selectCategorySpinner = findViewById(R.id.select_category_spinner);
         selectNameEditText = findViewById(R.id.select_name_edittext);
         selectNameInputLayout = findViewById(R.id.select_name_inputlayout);
-        selectTypeSpinner = findViewById(R.id.select_spinner);
-        Button addEntryButton = findViewById(R.id.add_button);
-        chooseTimeTextView = findViewById(R.id.vaqt_tanlash_textview);
-        chooseDayTextView = findViewById(R.id.kun_tanlash_textview);
-        selectAmountEditText = findViewById(R.id.amount_edittext);
-        selectAmountInputLayout = findViewById(R.id.amount_inputlayout);
+        selectTypeSpinner = findViewById(R.id.select_type_spinner);
+        Button addEntryButton = findViewById(R.id.add_entry_button);
+        chooseTimeTextView = findViewById(R.id.choose_time_textview);
+        chooseDayTextView = findViewById(R.id.choose_day_textview);
+        selectAmountEditText = findViewById(R.id.select_amount_edittext);
+        selectAmountInputLayout = findViewById(R.id.select_amount_inputlayout);
         chosenDate = Calendar.getInstance();
 
         UserProfileViewModelFactory.getModel(getUid(), this).observe(this, new FirebaseObserver<FirebaseElement<User>>() {
@@ -83,6 +86,8 @@ public class AddWalletActivity extends OvalActivity {
                 }
             }
         });
+
+
         EnterTypeAdapter typeAdapter = new EnterTypeAdapter(this,
                 R.layout.new_entry_type_spinner_row, Arrays.asList(
                 new EnterTypeListViewModel("Chiqim", Color.parseColor("#ef5350"),
@@ -91,6 +96,7 @@ public class AddWalletActivity extends OvalActivity {
                         R.drawable.money_icon)));
 
         selectTypeSpinner.setAdapter(typeAdapter);
+
         updateDate();
         chooseDayTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +129,7 @@ public class AddWalletActivity extends OvalActivity {
             }
         });
     }
+
     private void dateUpdated() {
         if (user == null) return;
 
@@ -197,4 +204,6 @@ public class AddWalletActivity extends OvalActivity {
         onBackPressed();
         return true;
     }
+
+
 }

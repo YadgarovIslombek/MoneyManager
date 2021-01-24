@@ -3,7 +3,7 @@
   ~ /**
   ~  * Created by Yadgarov Islombek on 2021
   ~  * Copyright (c).  All rights reserved.
-  ~  * Last modified 23.01.21 4:14
+  ~  * Last modified 24.01.21 21:25
   ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
   ~  */
   -->
@@ -12,12 +12,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_date_range"
-        android:title="Choose date range"
+        android:title="Kalendar"
         android:icon="@drawable/icon_calendar_active"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_options"
-        android:title="Options"
+        android:title="Sozlash"
         android:icon="@drawable/icon_options"
         app:showAsAction="ifRoom" />
 </menu>

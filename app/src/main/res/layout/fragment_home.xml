@@ -3,7 +3,7 @@
   ~ /**
   ~  * Created by Yadgarov Islombek on 2021
   ~  * Copyright (c).  All rights reserved.
-  ~  * Last modified 23.01.21 17:40
+  ~  * Last modified 24.01.21 21:21
   ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
   ~  */
   -->
@@ -41,7 +41,7 @@
                 android:gravity="center"
                 android:text="1.250.000 so'm"
                 android:textColor="#eceff1"
-                android:textSize="12dp"
+                android:textSize="11dp"
                 app:layout_constraintBottom_toBottomOf="@+id/olchov"
                 app:layout_constraintEnd_toEndOf="@+id/olchov"
                 app:layout_constraintHorizontal_bias="0.95"
@@ -82,7 +82,7 @@
                 android:gravity="center"
                 android:text="1.000.000 so'm"
                 android:textColor="#eceff1"
-                android:textSize="12dp"
+                android:textSize="11dp"
                 app:layout_constraintBottom_toBottomOf="@+id/olchov"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintHorizontal_bias="0.05"
@@ -182,9 +182,9 @@
                 app:gaugePointStartColor="@color/gauge_income"
                 app:gaugeStartAngle="135"
                 app:gaugeStartValue="0"
-                app:gaugeStrokeCap="ROUND"
+                app:gaugeStrokeCap="BUTT"
                 app:gaugeStrokeColor="@color/gauge_expense"
-                app:gaugeStrokeWidth="13dp"
+                app:gaugeStrokeWidth="12dp"
                 app:gaugeSweepAngle="270"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -195,8 +195,6 @@
 
             </com.aid.moneymanager.lib.OlchovLibFromGit>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -225,7 +223,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerVertical="true"
                 android:fontFamily="sans-serif-medium"
-                android:text="Eng yuqori kirim-chiqimlar:"
+                android:text="Harajatlar:"
                 android:textColor="@color/secondary_text_material_light"
                 android:textSize="16sp" />
 

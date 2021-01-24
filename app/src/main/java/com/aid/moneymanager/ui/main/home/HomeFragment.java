@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 23.01.21 17:50
+ *  * Last modified 24.01.21 20:57
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -54,7 +54,7 @@ public class HomeFragment  extends BaseFragment {
     private User user;
     private ListDataSet<WalletEnter> walletEntryListDataSet;
 
-    public static final CharSequence TITLE = "Home";
+    public static final CharSequence TITLE = "Asosiy";
     private OlchovLibFromGit olchov;
 
     private TopCategoryAdapter adapter;

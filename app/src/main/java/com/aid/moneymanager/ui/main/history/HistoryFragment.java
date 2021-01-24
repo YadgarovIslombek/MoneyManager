@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 23.01.21 2:57
+ *  * Last modified 24.01.21 21:30
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -37,7 +37,7 @@ import java.util.Calendar;
 
 
 public class HistoryFragment extends BaseFragment {
-    public static final CharSequence TITLE = "History";
+    public static final CharSequence TITLE = "Tarix";
     Calendar calendarStart;
     Calendar calendarEnd;
     private RecyclerView historyRecyclerView;
@@ -114,7 +114,7 @@ public class HistoryFragment extends BaseFragment {
 
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
 
-            dividerTextView.setText("Date range: " + dateFormat.format(model.getStartDate().getTime())
+            dividerTextView.setText("Sana oralig'i: " + dateFormat.format(model.getStartDate().getTime())
                     + "  -  " + dateFormat.format(model.getEndDate().getTime()));
         } else {
             calendarIcon.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.icon_calendar));
@@ -140,7 +140,7 @@ public class HistoryFragment extends BaseFragment {
                 calendarEnd.set(Calendar.MINUTE, 59);
                 calendarEnd.set(Calendar.SECOND, 59);
                 calendarUpdated();
-                //updateCalendarIcon();
+                updateCalendarIcon();
             }
         });
         datePicker.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -149,7 +149,7 @@ public class HistoryFragment extends BaseFragment {
                 calendarStart = null;
                 calendarEnd = null;
                 calendarUpdated();
-                //updateCalendarIcon();
+                updateCalendarIcon();
             }
         });
         datePicker.show(getActivity().getFragmentManager(), "TAG");

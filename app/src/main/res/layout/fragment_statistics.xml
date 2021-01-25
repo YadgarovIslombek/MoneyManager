@@ -3,7 +3,7 @@
   ~ /**
   ~  * Created by Yadgarov Islombek on 2021
   ~  * Copyright (c).  All rights reserved.
-  ~  * Last modified 22.01.21 0:15
+  ~  * Last modified 25.01.21 11:14
   ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
   ~  */
   -->
@@ -68,7 +68,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerVertical="true"
                 android:fontFamily="sans-serif-medium"
-                android:text="Top expenses:"
+                android:text="Yuqori harajatlar:"
                 android:textColor="@color/secondary_text_material_light"
                 android:textSize="16sp" />
 
@@ -137,7 +137,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerVertical="true"
             android:fontFamily="sans-serif-medium"
-            android:text="Top expenses:"
+            android:text="Yuqori harajatlar:"
             android:textColor="@color/secondary_text_material_light"
             android:textSize="16sp" />
 

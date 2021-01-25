@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 22.01.21 0:04
+ *  * Last modified 25.01.21 23:39
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -95,9 +95,9 @@ public class EditWalletEntryActivity extends BaseActivity {
 
         EnterTypeAdapter typeAdapter = new EnterTypeAdapter(this,
                 R.layout.new_entry_type_spinner_row, Arrays.asList(
-                new EnterTypeListViewModel("Harajat", Color.parseColor("#ef5350"),
+                new EnterTypeListViewModel("Chiqim", Color.parseColor("#ef5350"),
                         R.drawable.money_icon),
-                new EnterTypeListViewModel("Foyda", Color.parseColor("#66bb6a"),
+                new EnterTypeListViewModel("Kirim", Color.parseColor("#66bb6a"),
                         R.drawable.money_icon)));
 
         selectTypeSpinner.setAdapter(typeAdapter);
@@ -232,9 +232,9 @@ public class EditWalletEntryActivity extends BaseActivity {
             throw new NolBalanceDifferenceException("Minimal summadan kam");
         }
 
-        if (entryName == null || entryName.length() == 0) {
-            throw new StringException("Matn katta bo'lishi lozim> 0");
-        }
+//        if (entryName == null || entryName.length() == 0) {
+//            throw new StringException("Matn kiritilmagan");
+//        }
 
         long finalBalanceDifference = balanceDifference - walletEntry.balanceDifference;
         user.wallet.sum += finalBalanceDifference;

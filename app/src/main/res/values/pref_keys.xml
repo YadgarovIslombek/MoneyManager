@@ -3,7 +3,7 @@
   ~ /**
   ~  * Created by Yadgarov Islombek on 2021
   ~  * Copyright (c).  All rights reserved.
-  ~  * Last modified 28.12.20 22:49
+  ~  * Last modified 25.01.21 23:57
   ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
   ~  */
   -->
@@ -15,6 +15,6 @@
     <string name="pref_key_currency">currencyHelper</string>
     <string name="pref_key_first_month_day">first_month_day</string>
     <string name="pref_key_first_week_day">first_week_day</string>
-    <string name="pref_key_policy">privacy_policy</string>
+    <string name="Dastur_haqida">privacy_policy</string>
     <string name="pref_key_logout">logout</string>
 </resources>

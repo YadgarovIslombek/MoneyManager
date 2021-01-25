@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 23.01.21 3:13
+ *  * Last modified 25.01.21 23:34
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -64,7 +64,7 @@ public class AddWalletActivity extends OvalActivity {
     public void onInitialized(Bundle savedInstanceState) {
         setSupportActionBar(findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Add wallet entry");
+        getSupportActionBar().setTitle("Kirim-chiqim qo'shish");
 
         selectCategorySpinner = findViewById(R.id.select_category_spinner);
         selectNameEditText = findViewById(R.id.select_name_edittext);
@@ -132,18 +132,13 @@ public class AddWalletActivity extends OvalActivity {
 
     private void dateUpdated() {
         if (user == null) return;
-
         final List<Category> categories = CategorysHelper.getCategories(user);
         EntryCategoryAdapter categoryAdapter = new EntryCategoryAdapter(this,
                 R.layout.new_entry_type_spinner_row, categories);
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         selectCategorySpinner.setAdapter(categoryAdapter);
-
         CurrencyHelper.setupAmountEditText(selectAmountEditText, user);
-
     }
-
-
     private void updateDate() {
         SimpleDateFormat dataFormatter = new SimpleDateFormat("yyyy-MM-dd");
         chooseDayTextView.setText(dataFormatter.format(chosenDate.getTime()));
@@ -155,13 +150,13 @@ public class AddWalletActivity extends OvalActivity {
     public void addToWallet(long balanceDifference, Date entryDate, String entryCategory, String entryName) throws NolBalanceDifferenceException, StringException {
         if (balanceDifference == 0) {
 //            throw new ZeroBalanceDifferenceException("Balance difference should not be 0");
-            throw new NolBalanceDifferenceException("0 dan yuqori bo'lishi shart");
+            throw new NolBalanceDifferenceException("Minimal summadan kam");
         }
 
-        if (entryName == null || entryName.length() == 0) {
-            throw new StringException("Matn katta bolishi kerak > 0");
-//            throw new EmptyStringException("Entry name length should be > 0");
-        }
+//        if (entryName == null || entryName.length() == 0) {
+//            throw new StringException("Matn kiritilmadi");
+////            throw new EmptyStringException("Entry name length should be > 0");
+//        }
 
         FirebaseDatabase.getInstance().getReference().child("wallet-entries").child(getUid())
                 .child("default").push().setValue(new WalletEnter(entryCategory, entryName, entryDate.getTime(), balanceDifference));

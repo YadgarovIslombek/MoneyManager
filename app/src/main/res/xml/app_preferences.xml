@@ -3,7 +3,7 @@
   ~ /**
   ~  * Created by Yadgarov Islombek on 2021
   ~  * Copyright (c).  All rights reserved.
-  ~  * Last modified 23.01.21 4:14
+  ~  * Last modified 25.01.21 23:57
   ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
   ~  */
   -->
@@ -45,9 +45,9 @@
             android:title="Set first week day"
             app:isPreferenceVisible="false" />
         <Preference
-            android:key="@string/pref_key_policy"
-            android:title="Privacy policy"
-            app:isPreferenceVisible="false" />
+            android:key="@string/Dastur_haqida"
+            android:title="Dastur haqida"
+            app:isPreferenceVisible="true" />
         <Preference
             android:key="@string/pref_key_logout"
             android:title="Tizimdan chiqish" />

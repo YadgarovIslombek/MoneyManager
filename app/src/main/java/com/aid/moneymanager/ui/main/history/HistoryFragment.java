@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 24.01.21 21:30
+ *  * Last modified 25.01.21 10:57
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -119,7 +119,7 @@ public class HistoryFragment extends BaseFragment {
         } else {
             calendarIcon.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.icon_calendar));
 
-            dividerTextView.setText("So'ngi harajatlar:");
+            dividerTextView.setText("Kirim chiqimlar tarixi:");
         }
 
     }

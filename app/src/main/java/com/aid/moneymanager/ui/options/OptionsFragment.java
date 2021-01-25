@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 23.01.21 16:42
+ *  * Last modified 25.01.21 23:57
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -66,7 +66,7 @@ public class OptionsFragment extends PreferenceFragmentCompat {
                 dataUpdated();
             }
         });
-        Preference policyPreference = findPreference(getString(R.string.pref_key_policy));
+  //      Preference policyPreference = findPreference(getString(R.string.Dastur_haqida));
 //        policyPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 //            public boolean onPreferenceClick(Preference preference) {
 //                Intent browserIntent = new Intent(Intent.ACTION_VIEW,

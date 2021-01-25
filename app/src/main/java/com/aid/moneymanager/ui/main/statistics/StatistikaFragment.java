@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 23.01.21 2:57
+ *  * Last modified 25.01.21 23:40
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -61,7 +61,7 @@ import java.util.Map;
 
 
 public class StatistikaFragment extends BaseFragment {
-    public static final CharSequence TITLE = "Statistics";
+    public static final CharSequence TITLE = "Statistika";
 
     private Menu menu;
     private Calendar calendarStart;
@@ -222,7 +222,7 @@ public class StatistikaFragment extends BaseFragment {
 
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
 
-            dividerTextView.setText("Date range: " + dateFormat.format(calendarStart.getTime())
+            dividerTextView.setText("Sana oralig'i: " + dateFormat.format(calendarStart.getTime())
                     + "  -  " + dateFormat.format(calendarEnd.getTime()));
 
             expensesTextView.setText(CurrencyHelper.formatCurrency(user.currency, expensesSumInDateRange));

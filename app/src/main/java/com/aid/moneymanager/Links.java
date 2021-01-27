@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 23.01.21 4:14
+ *  * Last modified 26.01.21 0:34
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -11,5 +11,5 @@ package com.aid.moneymanager;
 
 
 public class Links {
-    public static String PRIVACY_POLICY_LINK = "https://github.com/YadgarovIslombek/MoneyManager/blob/master/README.md";
+    public static String PRIVACY_POLICY_LINK = "https://t.me/ID221423A";
 }

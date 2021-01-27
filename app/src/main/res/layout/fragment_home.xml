@@ -3,7 +3,7 @@
   ~ /**
   ~  * Created by Yadgarov Islombek on 2021
   ~  * Copyright (c).  All rights reserved.
-  ~  * Last modified 24.01.21 21:21
+  ~  * Last modified 27.01.21 22:32
   ~  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
   ~  */
   -->
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="01-Feb"
-                android:textColor="#eceff1"
+                android:textColor="@color/backgroundPrimary"
                 android:textSize="10dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintHorizontal_bias="0.076"
@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Kirim"
-                android:textColor="#eceff1"
+                android:textColor="@color/backgroundPrimary"
                 android:textSize="10dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -182,9 +182,9 @@
                 app:gaugePointStartColor="@color/gauge_income"
                 app:gaugeStartAngle="135"
                 app:gaugeStartValue="0"
-                app:gaugeStrokeCap="BUTT"
+                app:gaugeStrokeCap="ROUND"
                 app:gaugeStrokeColor="@color/gauge_expense"
-                app:gaugeStrokeWidth="12dp"
+                app:gaugeStrokeWidth="13dp"
                 app:gaugeSweepAngle="270"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

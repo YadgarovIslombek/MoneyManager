@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 24.01.21 20:57
+ *  * Last modified 28.01.21 0:21
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -30,14 +30,14 @@ import com.aid.moneymanager.firebase.FirebaseObserver;
 import com.aid.moneymanager.firebase.ListDataSet;
 import com.aid.moneymanager.firebase.models.User;
 import com.aid.moneymanager.firebase.models.UserSettings;
-import com.aid.moneymanager.firebase.models.WalletEnter;
+import com.aid.moneymanager.firebase.models.WalletEntry;
 import com.aid.moneymanager.firebase.viewModel_fact.TopWalletEntriesViewModelFactory;
 import com.aid.moneymanager.firebase.viewModel_fact.UserProfileViewModelFactory;
 import com.aid.moneymanager.lib.OlchovLibFromGit;
 import com.aid.moneymanager.models.Category;
 import com.aid.moneymanager.ui.options.OptionsActivity;
 import com.aid.moneymanager.utils.CalendarHelper;
-import com.aid.moneymanager.utils.CategorysHelper;
+import com.aid.moneymanager.utils.CategoriesHelper;
 import com.aid.moneymanager.utils.CurrencyHelper;
 
 import java.text.DateFormat;
@@ -52,7 +52,7 @@ import java.util.Map;
 
 public class HomeFragment  extends BaseFragment {
     private User user;
-    private ListDataSet<WalletEnter> walletEntryListDataSet;
+    private ListDataSet<WalletEntry> walletEntryListDataSet;
 
     public static final CharSequence TITLE = "Asosiy";
     private OlchovLibFromGit olchov;
@@ -90,8 +90,8 @@ public class HomeFragment  extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         categoryModelsHome = new ArrayList<>();
 
-        olchov= view.findViewById(R.id.olchov);
-        olchov.setValue(50);
+        olchov = view.findViewById(R.id.olchov);
+        olchov.setValue(100);
 
         totalBalanceTextView = view.findViewById(R.id.total_balance_textview);
         LeftBalanceTextView = view.findViewById(R.id.left_balance_text_view);
@@ -108,10 +108,10 @@ public class HomeFragment  extends BaseFragment {
         favoriteListView.setAdapter(adapter);
 
 
-        TopWalletEntriesViewModelFactory.getModel(getUid(), getActivity()).observe(this, new FirebaseObserver<FirebaseElement<ListDataSet<WalletEnter>>>() {
+        TopWalletEntriesViewModelFactory.getModel(getUid(), getActivity()).observe(this, new FirebaseObserver<FirebaseElement<ListDataSet<WalletEntry>>>() {
 
             @Override
-            public void onChanged(FirebaseElement<ListDataSet<WalletEnter>> firebaseElement) {
+            public void onChanged(FirebaseElement<ListDataSet<WalletEntry>> firebaseElement) {
                 if (firebaseElement.hasNoError()) {
                     HomeFragment.this.walletEntryListDataSet = firebaseElement.getElement();
                     dataUpdated();
@@ -157,7 +157,7 @@ public class HomeFragment  extends BaseFragment {
     private void dataUpdated() {
         if (user == null || walletEntryListDataSet == null) return;
 
-        List<WalletEnter> entryList = new ArrayList<>(walletEntryListDataSet.getList());
+        List<WalletEntry> entryList = new ArrayList<>(walletEntryListDataSet.getList());
 
         Calendar startDate = CalendarHelper.getUserPeriodStartDate(user);
         Calendar endDate = CalendarHelper.getUserPeriodEndDate(user);
@@ -169,13 +169,13 @@ public class HomeFragment  extends BaseFragment {
         long incomesSumInDateRange = 0;
 
         HashMap<Category, Long> categoryModels = new HashMap<>();
-        for (WalletEnter walletEntry : entryList) {
+        for (WalletEntry walletEntry : entryList) {
             if (walletEntry.balanceDifference > 0) {
                 incomesSumInDateRange += walletEntry.balanceDifference;
                 continue;
             }
             expensesSumInDateRange += walletEntry.balanceDifference;
-            Category category = CategorysHelper.searchCategory(user, walletEntry.categoryID);
+            Category category = CategoriesHelper.searchCategory(user, walletEntry.categoryID);
             if (categoryModels.get(category) != null)
                 categoryModels.put(category, categoryModels.get(category) + walletEntry.balanceDifference);
             else

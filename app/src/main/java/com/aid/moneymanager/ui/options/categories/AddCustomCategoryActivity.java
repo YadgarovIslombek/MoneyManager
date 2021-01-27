@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 23.01.21 2:57
+ *  * Last modified 26.01.21 0:06
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -113,7 +113,7 @@ public class AddCustomCategoryActivity extends BaseActivity {
 
     private void addCustomCategory(String categoryName, String categoryHtmlCode) throws StringException {
         if (categoryName == null || categoryName.length() == 0)
-            throw new StringException("Entry name length should be > 0");
+            throw new StringException("Matn kiritilmagan");
 
         FirebaseDatabase.getInstance().getReference()
                 .child("users").child(getUid()).child("customCategories").push().setValue(

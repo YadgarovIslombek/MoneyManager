@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 23.01.21 2:57
+ *  * Last modified 28.01.21 0:16
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -22,7 +22,7 @@ import com.aid.moneymanager.firebase.FirebaseObserver;
 import com.aid.moneymanager.firebase.models.User;
 import com.aid.moneymanager.firebase.viewModel_fact.UserProfileViewModelFactory;
 import com.aid.moneymanager.models.Category;
-import com.aid.moneymanager.utils.CategorysHelper;
+import com.aid.moneymanager.utils.CategoriesHelper;
 
 import java.util.ArrayList;
 
@@ -38,7 +38,7 @@ public class CustomCategoriesActivity extends BaseActivity {
         setContentView(R.layout.activity_custom_categories);
         setSupportActionBar(findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Custom categories");
+        getSupportActionBar().setTitle("Kategoriya qo'shish");
 
         UserProfileViewModelFactory.getModel(getUid(), this).observe(this, new FirebaseObserver<FirebaseElement<User>>() {
             @Override
@@ -67,7 +67,7 @@ public class CustomCategoriesActivity extends BaseActivity {
     private void dataUpdated() {
         if (user == null) return;
         customCategoriesList.clear();
-        customCategoriesList.addAll(CategorysHelper.getCustomCategories(user));
+        customCategoriesList.addAll(CategoriesHelper.getCustomCategories(user));
         customCategoriesAdapter.notifyDataSetChanged();
 
     }

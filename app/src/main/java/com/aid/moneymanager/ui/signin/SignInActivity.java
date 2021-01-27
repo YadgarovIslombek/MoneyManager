@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 23.01.21 4:14
+ *  * Last modified 28.01.21 0:21
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -26,6 +26,7 @@ import com.aid.moneymanager.Links;
 import com.aid.moneymanager.R;
 import com.aid.moneymanager.firebase.models.User;
 import com.aid.moneymanager.ui.main.MainActivity;
+import com.aid.moneymanager.utils.EmailEncode;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -46,7 +47,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
+
 public class SignInActivity extends AppCompatActivity {
+    EmailEncode emailEncode = new EmailEncode();
     private static final int RC_SIGN_IN = 123;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
@@ -78,20 +81,20 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
 
-//        privacyPolicyTextView = findViewById(R.id.privacy_policy_text_view);
-//        SpannableStringBuilder spanTxt = new SpannableStringBuilder(
-//                "By signing in, you are indicating that you have read and agree to the ");
-//        spanTxt.append("privacy policy");
-//        spanTxt.setSpan(new ClickableSpan() {
-//            @Override
-//            public void onClick(@NonNull View widget) {
-//                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-//                        Uri.parse(Links.PRIVACY_POLICY_LINK));
-//                startActivity(browserIntent);
-//            }
-//        }, spanTxt.length() - "privacy policy".length(), spanTxt.length(), 0);
-//        privacyPolicyTextView.setMovementMethod(LinkMovementMethod.getInstance());
-//        privacyPolicyTextView.setText(spanTxt, TextView.BufferType.SPANNABLE);
+        privacyPolicyTextView = findViewById(R.id.privacy_policy_text_view);
+        SpannableStringBuilder spanTxt = new SpannableStringBuilder(
+                " Dasturchi bilan bog'lanish uchun  ");
+        spanTxt.append("bosing!");
+        spanTxt.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(Links.PRIVACY_POLICY_LINK));
+                startActivity(browserIntent);
+            }
+        }, spanTxt.length() - "privacy policy".length(), spanTxt.length(), 0);
+        privacyPolicyTextView.setMovementMethod(LinkMovementMethod.getInstance());
+        privacyPolicyTextView.setText(spanTxt, TextView.BufferType.SPANNABLE);
 
         errorTextView = findViewById(R.id.error_textview);
     }
@@ -136,7 +139,7 @@ public class SignInActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                         } else {
-                            loginError("Firebase auth failed.");
+                            loginError("Internetga ulanmagansiz..");
                             hideProgressView();
                         }
                     }
@@ -149,7 +152,8 @@ public class SignInActivity extends AppCompatActivity {
             return;
         }
         showProgressView();
-        final DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("users").child(encodeUserEmail(currentUser.getUid()));
+
+        final DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("users").child(currentUser.getUid());
         userReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -171,14 +175,6 @@ public class SignInActivity extends AppCompatActivity {
         });
 
 
-    }
-
-    static String encodeUserEmail(String userEmail) {
-        return userEmail.replace(".", ",");
-    }
-
-    static String decodeUserEmail(String userEmail) {
-        return userEmail.replace(",", ".");
     }
 
     private void loginError(String text) {
@@ -224,9 +220,11 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
     }
 
 }
+

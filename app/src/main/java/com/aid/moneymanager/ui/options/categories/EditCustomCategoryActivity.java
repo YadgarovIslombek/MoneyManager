@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 23.01.21 2:57
+ *  * Last modified 26.01.21 0:08
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -53,7 +53,7 @@ public class EditCustomCategoryActivity extends BaseActivity {
         setContentView(R.layout.activity_edit_custom_category);
         setSupportActionBar(findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Edit custom category");
+        getSupportActionBar().setTitle("O'zgartirish");
 
 
         iconImageView = findViewById(R.id.icon_imageview);
@@ -111,7 +111,7 @@ public class EditCustomCategoryActivity extends BaseActivity {
 
     private void editCustomCategory(String categoryName, String categoryHtmlCode) throws StringException {
         if (categoryName == null || categoryName.length() == 0)
-            throw new StringException("Entry name length should be > 0");
+            throw new StringException("Matn kiritilmagan");
 
         FirebaseDatabase.getInstance().getReference()
                 .child("users").child(getUid()).child("customCategories").child(categoryID).setValue(

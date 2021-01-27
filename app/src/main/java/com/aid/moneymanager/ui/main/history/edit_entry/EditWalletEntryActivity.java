@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 25.01.21 23:39
+ *  * Last modified 28.01.21 0:16
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -31,14 +31,14 @@ import com.aid.moneymanager.exceptions.StringException;
 import com.aid.moneymanager.firebase.FirebaseElement;
 import com.aid.moneymanager.firebase.FirebaseObserver;
 import com.aid.moneymanager.firebase.models.User;
-import com.aid.moneymanager.firebase.models.WalletEnter;
+import com.aid.moneymanager.firebase.models.WalletEntry;
 import com.aid.moneymanager.firebase.viewModel_fact.UserProfileViewModelFactory;
 import com.aid.moneymanager.firebase.viewModel_fact.WalletEntryViewModelFactory;
 import com.aid.moneymanager.models.Category;
-import com.aid.moneymanager.ui.add_kiritish.EnterTypeAdapter;
-import com.aid.moneymanager.ui.add_kiritish.EnterTypeListViewModel;
-import com.aid.moneymanager.ui.add_kiritish.EntryCategoryAdapter;
-import com.aid.moneymanager.utils.CategorysHelper;
+
+import com.aid.moneymanager.ui.add_entry.EntryCategoriesAdapter;
+import com.aid.moneymanager.ui.add_entry.EntryTypeListViewModel;
+import com.aid.moneymanager.utils.CategoriesHelper;
 import com.aid.moneymanager.utils.CurrencyHelper;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -51,7 +51,6 @@ import java.util.Date;
 import java.util.List;
 
 
-
 public class EditWalletEntryActivity extends BaseActivity {
 
     private Spinner selectCategorySpinner;
@@ -62,7 +61,7 @@ public class EditWalletEntryActivity extends BaseActivity {
     private TextView chooseTimeTextView;
     private Spinner selectTypeSpinner;
     private User user;
-    private WalletEnter walletEntry;
+    private WalletEntry walletEntry;
     private Button removeEntryButton;
     private Button editEntryButton;
     private String walletId;
@@ -93,11 +92,11 @@ public class EditWalletEntryActivity extends BaseActivity {
 
         choosedDate = Calendar.getInstance();
 
-        EnterTypeAdapter typeAdapter = new EnterTypeAdapter(this,
+        EntryCategoriesAdapter typeAdapter = new EntryCategoriesAdapter(this,
                 R.layout.new_entry_type_spinner_row, Arrays.asList(
-                new EnterTypeListViewModel("Chiqim", Color.parseColor("#ef5350"),
+                new EntryTypeListViewModel("Harajat", Color.parseColor("#ef5350"),
                         R.drawable.money_icon),
-                new EnterTypeListViewModel("Kirim", Color.parseColor("#66bb6a"),
+                new EntryTypeListViewModel("Foyda", Color.parseColor("#66bb6a"),
                         R.drawable.money_icon)));
 
         selectTypeSpinner.setAdapter(typeAdapter);
@@ -166,9 +165,9 @@ public class EditWalletEntryActivity extends BaseActivity {
         });
 
 
-        WalletEntryViewModelFactory.getModel(getUid(), walletId, this).observe(this, new FirebaseObserver<FirebaseElement<WalletEnter>>() {
+        WalletEntryViewModelFactory.getModel(getUid(), walletId, this).observe(this, new FirebaseObserver<FirebaseElement<WalletEntry>>() {
             @Override
-            public void onChanged(FirebaseElement<WalletEnter> firebaseElement) {
+            public void onChanged(FirebaseElement<WalletEntry> firebaseElement) {
                 if (firebaseElement.hasNoError()) {
                     walletEntry = firebaseElement.getElement();
                     dataUpdated();
@@ -182,8 +181,8 @@ public class EditWalletEntryActivity extends BaseActivity {
     public void dataUpdated() {
         if (walletEntry == null || user == null) return;
 
-        final List<Category> categories = CategorysHelper.getCategories(user);
-        EntryCategoryAdapter categoryAdapter = new EntryCategoryAdapter(this,
+        final List<Category> categories = CategoriesHelper.getCategories(user);
+        EntryCategoriesAdapter categoryAdapter = new EntryCategoriesAdapter(this,
                 R.layout.new_entry_type_spinner_row, categories);
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         selectCategorySpinner.setAdapter(categoryAdapter);
@@ -204,7 +203,7 @@ public class EditWalletEntryActivity extends BaseActivity {
         selectCategorySpinner.post(new Runnable() {
             @Override
             public void run() {
-                EntryCategoryAdapter adapter = (EntryCategoryAdapter) selectCategorySpinner.getAdapter();
+                EntryCategoriesAdapter adapter = (EntryCategoriesAdapter) selectCategorySpinner.getAdapter();
                 selectCategorySpinner.setSelection(adapter.getItemIndex(walletEntry.categoryID));
             }
         });
@@ -232,16 +231,16 @@ public class EditWalletEntryActivity extends BaseActivity {
             throw new NolBalanceDifferenceException("Minimal summadan kam");
         }
 
-//        if (entryName == null || entryName.length() == 0) {
-//            throw new StringException("Matn kiritilmagan");
-//        }
+        if (entryName == null || entryName.length() == 0) {
+            throw new StringException("Matn katta bo'lishi lozim> 0");
+        }
 
         long finalBalanceDifference = balanceDifference - walletEntry.balanceDifference;
         user.wallet.sum += finalBalanceDifference;
         UserProfileViewModelFactory.saveModel(getUid(), user);
 
         FirebaseDatabase.getInstance().getReference().child("wallet-entries").child(getUid())
-                .child("default").child(walletId).setValue(new WalletEnter(entryCategory, entryName, entryDate.getTime(), balanceDifference));
+                .child("default").child(walletId).setValue(new WalletEntry(entryCategory, entryName, entryDate.getTime(), balanceDifference));
         finish();
     }
 

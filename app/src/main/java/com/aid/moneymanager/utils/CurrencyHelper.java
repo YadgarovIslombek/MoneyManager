@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 24.01.21 22:54
+ *  * Last modified 28.01.21 0:21
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -44,13 +44,10 @@ public class CurrencyHelper {
 //                (absMoney % 100 < 10 ? "0" : "") +
 //                (absMoney % 100)+
 //                decimalFormat1.format(money)+
-        return (curency.left ? (curency.symbol + (curency.space ? " " : "")) : "") +
-                numberFormat.format(money) +
-                //                (money < 0 ? "-" : "") + (absMoney / 1000.0) + "." +
-//                (absMoney % 100 < 10 ? "00" : "") +
-//                (absMoney % 100)  +
-                (curency.left ? "" : ((curency.space ? " " : "") + curency.symbol));
-
+        return
+                (curency.left ? (curency.symbol + (curency.space ? " " : " ")) : " ") +
+                        numberFormat.format(money) +
+                        (curency.left ? " " : ((curency.space ? " " : " ") + curency.symbol));
     }
 
     public static void setupAmountEditText(EditText editText, User user) {

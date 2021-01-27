@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 21.01.21 23:24
+ *  * Last modified 28.01.21 0:21
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -10,6 +10,7 @@
 package com.aid.moneymanager.firebase.models;
 
 import com.google.firebase.database.IgnoreExtraProperties;
+
 
 @IgnoreExtraProperties
 public class Currency {
@@ -23,7 +24,7 @@ public class Currency {
 
     public Currency(String symbol, boolean left, boolean space) {
         this.symbol = symbol;
-        this.left=left;
-        this.space=space;
+        this.left = left;
+        this.space = space;
     }
 }

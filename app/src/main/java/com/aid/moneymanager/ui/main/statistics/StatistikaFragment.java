@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 25.01.21 23:40
+ *  * Last modified 28.01.21 0:16
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -34,13 +34,13 @@ import com.aid.moneymanager.firebase.FirebaseElement;
 import com.aid.moneymanager.firebase.FirebaseObserver;
 import com.aid.moneymanager.firebase.ListDataSet;
 import com.aid.moneymanager.firebase.models.User;
-import com.aid.moneymanager.firebase.models.WalletEnter;
+import com.aid.moneymanager.firebase.models.WalletEntry;
 import com.aid.moneymanager.firebase.viewModel_fact.TopWalletEntriesStatisticsViewModelFactory;
 import com.aid.moneymanager.firebase.viewModel_fact.UserProfileViewModelFactory;
 import com.aid.moneymanager.models.Category;
 import com.aid.moneymanager.ui.options.OptionsActivity;
 import com.aid.moneymanager.utils.CalendarHelper;
-import com.aid.moneymanager.utils.CategorysHelper;
+import com.aid.moneymanager.utils.CategoriesHelper;
 import com.aid.moneymanager.utils.CurrencyHelper;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
@@ -67,7 +67,7 @@ public class StatistikaFragment extends BaseFragment {
     private Calendar calendarStart;
     private Calendar calendarEnd;
     private User user;
-    private ListDataSet<WalletEnter> walletEntryListDataSet;
+    private ListDataSet<WalletEntry> walletEntryListDataSet;
     private PieChart pieChart;
     private ArrayList<TopCategoryStatisticsListViewModel> categoryModelsHome;
     private TopCategoriesStatisticsAdapter adapter;
@@ -109,11 +109,11 @@ public class StatistikaFragment extends BaseFragment {
         adapter = new TopCategoriesStatisticsAdapter(categoryModelsHome, getActivity().getApplicationContext());
         favoriteListView.setAdapter(adapter);
 
-        TopWalletEntriesStatisticsViewModelFactory.getModel(getUid(), getActivity()).observe(this, new FirebaseObserver<FirebaseElement<ListDataSet<WalletEnter>>>() {
+        TopWalletEntriesStatisticsViewModelFactory.getModel(getUid(), getActivity()).observe(this, new FirebaseObserver<FirebaseElement<ListDataSet<WalletEntry>>>() {
 
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
-            public void onChanged(FirebaseElement<ListDataSet<WalletEnter>> firebaseElement) {
+            public void onChanged(FirebaseElement<ListDataSet<WalletEntry>> firebaseElement) {
                 if (firebaseElement.hasNoError()) {
                     StatistikaFragment.this.walletEntryListDataSet = firebaseElement.getElement();
                     dataUpdated();
@@ -147,19 +147,19 @@ public class StatistikaFragment extends BaseFragment {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void dataUpdated() {
         if (calendarStart != null && calendarEnd != null && walletEntryListDataSet != null) {
-            List<WalletEnter> entryList = new ArrayList<>(walletEntryListDataSet.getList());
+            List<WalletEntry> entryList = new ArrayList<>(walletEntryListDataSet.getList());
 
             long expensesSumInDateRange = 0;
             long incomesSumInDateRange = 0;
 
             HashMap<Category, Long> categoryModels = new HashMap<>();
-            for (WalletEnter walletEntry : entryList) {
+            for (WalletEntry walletEntry : entryList) {
                 if (walletEntry.balanceDifference > 0) {
                     incomesSumInDateRange += walletEntry.balanceDifference;
                     continue;
                 }
                 expensesSumInDateRange += walletEntry.balanceDifference;
-                Category category = CategorysHelper.searchCategory(user, walletEntry.categoryID);
+                Category category = CategoriesHelper.searchCategory(user, walletEntry.categoryID);
                 if (categoryModels.get(category) != null)
                     categoryModels.put(category, categoryModels.get(category) + walletEntry.balanceDifference);
                 else

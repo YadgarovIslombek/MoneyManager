@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 25.01.21 10:57
+ *  * Last modified 27.01.21 23:54
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -35,9 +35,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-
 public class HistoryFragment extends BaseFragment {
-    public static final CharSequence TITLE = "Tarix";
+    public static final CharSequence TITLE = "History";
     Calendar calendarStart;
     Calendar calendarEnd;
     private RecyclerView historyRecyclerView;
@@ -114,12 +113,12 @@ public class HistoryFragment extends BaseFragment {
 
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
 
-            dividerTextView.setText("Sana oralig'i: " + dateFormat.format(model.getStartDate().getTime())
+            dividerTextView.setText("Date range: " + dateFormat.format(model.getStartDate().getTime())
                     + "  -  " + dateFormat.format(model.getEndDate().getTime()));
         } else {
             calendarIcon.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.icon_calendar));
 
-            dividerTextView.setText("Kirim chiqimlar tarixi:");
+            dividerTextView.setText("So'ngi harajatlar:");
         }
 
     }

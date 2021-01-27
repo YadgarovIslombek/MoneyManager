@@ -2,15 +2,11 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 22.01.21 0:08
+ *  * Last modified 27.01.21 22:40
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
-
 package com.aid.moneymanager.firebase.viewModel_fact;
-
-
-
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,9 +16,6 @@ import com.aid.moneymanager.firebase.viewModels.WalletEntriesBaseViewModel;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
-
-
-
 public class TopWalletEntriesStatisticsViewModelFactory implements ViewModelProvider.Factory {
     private Calendar endDate;
     private Calendar startDate;

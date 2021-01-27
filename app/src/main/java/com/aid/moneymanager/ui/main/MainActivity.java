@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 23.01.21 2:57
+ *  * Last modified 28.01.21 0:18
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -26,7 +26,8 @@ import androidx.viewpager.widget.ViewPager;
 
 
 import com.aid.moneymanager.R;
-import com.aid.moneymanager.ui.add_kiritish.AddWalletActivity;
+
+import com.aid.moneymanager.ui.add_entry.AddWalletEntryActivity;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ActivityOptions options =
                         ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, addEntryButton, addEntryButton.getTransitionName());
-                startActivity(new Intent(MainActivity.this, AddWalletActivity.class), options.toBundle());
+                startActivity(new Intent(MainActivity.this, AddWalletEntryActivity.class), options.toBundle());
 
             }
         });
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("pl.cyfrogen.budget.ACTION_LOGOUT");
+        intentFilter.addAction("com.aid.moneymanager.ACTION_LOGOUT");
         receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {

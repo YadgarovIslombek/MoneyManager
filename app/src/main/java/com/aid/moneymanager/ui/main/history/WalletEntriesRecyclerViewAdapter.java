@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 21.01.21 23:53
+ *  * Last modified 28.01.21 0:21
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -28,12 +28,12 @@ import com.aid.moneymanager.firebase.FirebaseElement;
 import com.aid.moneymanager.firebase.FirebaseObserver;
 import com.aid.moneymanager.firebase.ListDataSet;
 import com.aid.moneymanager.firebase.models.User;
-import com.aid.moneymanager.firebase.models.WalletEnter;
+import com.aid.moneymanager.firebase.models.WalletEntry;
 import com.aid.moneymanager.firebase.viewModel_fact.UserProfileViewModelFactory;
 import com.aid.moneymanager.firebase.viewModel_fact.WalletEntriesHistoryViewModelFactory;
 import com.aid.moneymanager.models.Category;
 import com.aid.moneymanager.ui.main.history.edit_entry.EditWalletEntryActivity;
-import com.aid.moneymanager.utils.CategorysHelper;
+import com.aid.moneymanager.utils.CategoriesHelper;
 import com.aid.moneymanager.utils.CurrencyHelper;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -41,14 +41,11 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
-
-
 public class WalletEntriesRecyclerViewAdapter extends RecyclerView.Adapter<WalletEntryHolder> {
 
     private final String uid;
     private final FragmentActivity fragmentActivity;
-    private ListDataSet<WalletEnter> walletEntries;
+    private ListDataSet<WalletEntry> walletEntries;
 
     private User user;
     private boolean firstUserSync = false;
@@ -63,10 +60,10 @@ public class WalletEntriesRecyclerViewAdapter extends RecyclerView.Adapter<Walle
                 if(!element.hasNoError()) return;
                 WalletEntriesRecyclerViewAdapter.this.user = element.getElement();
                 if(!firstUserSync) {
-                    WalletEntriesHistoryViewModelFactory.getModel(uid, fragmentActivity).observe(fragmentActivity, new FirebaseObserver<FirebaseElement<ListDataSet<WalletEnter>>>() {
+                    WalletEntriesHistoryViewModelFactory.getModel(uid, fragmentActivity).observe(fragmentActivity, new FirebaseObserver<FirebaseElement<ListDataSet<WalletEntry>>>() {
                         @Override
-                        public void onChanged(FirebaseElement<ListDataSet<WalletEnter>> element) {
-                            if(element.hasNoError()) {
+                        public void onChanged(FirebaseElement<ListDataSet<WalletEntry>> element) {
+                            if (element.hasNoError()) {
                                 walletEntries = element.getElement();
                                 element.getElement().notifyRecycler(WalletEntriesRecyclerViewAdapter.this);
 
@@ -91,8 +88,8 @@ public class WalletEntriesRecyclerViewAdapter extends RecyclerView.Adapter<Walle
     @Override
     public void onBindViewHolder(WalletEntryHolder holder, int position) {
         String id = walletEntries.getIDList().get(position);
-        WalletEnter walletEntry = walletEntries.getList().get(position);
-        Category category = CategorysHelper.searchCategory(user, walletEntry.categoryID);
+        WalletEntry walletEntry = walletEntries.getList().get(position);
+        Category category = CategoriesHelper.searchCategory(user, walletEntry.categoryID);
         holder.iconImageView.setImageResource(category.getIconResourceID());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             holder.iconImageView.setBackgroundTintList(ColorStateList.valueOf(category.getIconColor()));

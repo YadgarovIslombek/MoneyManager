@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 21.01.21 23:42
+ *  * Last modified 28.01.21 0:21
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -20,31 +20,31 @@ import com.aid.moneymanager.firebase.FirebaseElement;
 import com.aid.moneymanager.firebase.FirebaseObserver;
 import com.aid.moneymanager.firebase.FirebaseQueryLiveDataSet;
 import com.aid.moneymanager.firebase.ListDataSet;
-import com.aid.moneymanager.firebase.models.WalletEnter;
+import com.aid.moneymanager.firebase.models.WalletEntry;
 import com.google.firebase.database.Query;
 
 
 
 public class WalletEntriesBaseViewModel extends ViewModel {
-    protected final FirebaseQueryLiveDataSet<WalletEnter> liveData;
+    protected final FirebaseQueryLiveDataSet<WalletEntry> liveData;
     protected final String uid;
 
     public WalletEntriesBaseViewModel(String uid, Query query) {
-        this.uid=uid;
-        liveData = new FirebaseQueryLiveDataSet<>(WalletEnter.class, query);
+        this.uid = uid;
+        liveData = new FirebaseQueryLiveDataSet<>(WalletEntry.class, query);
     }
 
-    public void observe(LifecycleOwner owner, FirebaseObserver<FirebaseElement<ListDataSet<WalletEnter>>> observer) {
+    public void observe(LifecycleOwner owner, FirebaseObserver<FirebaseElement<ListDataSet<WalletEntry>>> observer) {
         observer.onChanged(liveData.getValue());
-        liveData.observe(owner, new Observer<FirebaseElement<ListDataSet<WalletEnter>>>() {
+        liveData.observe(owner, new Observer<FirebaseElement<ListDataSet<WalletEntry>>>() {
             @Override
-            public void onChanged(@Nullable FirebaseElement<ListDataSet<WalletEnter>> element) {
-                if(element != null) observer.onChanged(element);
+            public void onChanged(@Nullable FirebaseElement<ListDataSet<WalletEntry>> element) {
+                if (element != null) observer.onChanged(element);
             }
         });
     }
 
-    public void removeObserver(Observer<FirebaseElement<ListDataSet<WalletEnter>>> observer) {
+    public void removeObserver(Observer<FirebaseElement<ListDataSet<WalletEntry>>> observer) {
         liveData.removeObserver(observer);
     }
 

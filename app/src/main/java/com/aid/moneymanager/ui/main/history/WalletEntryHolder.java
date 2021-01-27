@@ -2,7 +2,7 @@
  * *
  *  * Created by Yadgarov Islombek on 2021
  *  * Copyright (c).  All rights reserved.
- *  * Last modified 21.01.21 23:50
+ *  * Last modified 27.01.21 23:54
  *  بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم  *
  *
  */
@@ -13,11 +13,8 @@ package com.aid.moneymanager.ui.main.history;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.aid.moneymanager.R;
-
 
 public class WalletEntryHolder extends RecyclerView.ViewHolder {
 
